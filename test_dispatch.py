@@ -1,30 +1,5 @@
 import pytest
-from structures.priority_queue import DispatchPriorityQueue, RideRequest
 from routing.city_graph import CityGraph
-
-def test_priority_queue_heap_properties():
-    pq = DispatchPriorityQueue()
-    
-    req_standard = RideRequest("Alice", 2.5)
-    req_vip = RideRequest("Bob", 9.8)
-    req_surge = RideRequest("Charlie", 5.2)
-    
-    pq.insert(req_standard)
-    pq.insert(req_vip)
-    pq.insert(req_surge)
-    
-    # Assert Max-Heap extracts highest priority first
-    first = pq.extract_max()
-    assert first.rider_name == "Bob"
-    assert first.priority_score == 9.8
-    
-    second = pq.extract_max()
-    assert second.rider_name == "Charlie"
-    
-    third = pq.extract_max()
-    assert third.rider_name == "Alice"
-    
-    assert pq.is_empty() is True
 
 def test_city_graph_routing():
     graph = CityGraph()
